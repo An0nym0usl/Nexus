@@ -1,0 +1,16 @@
+services:
+  nexus:
+    build: .
+    ports:
+      - "3847:3847"
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      PORT: 3847
+    volumes:
+      - nexus-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  nexus-data:

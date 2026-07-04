@@ -1,0 +1,29 @@
+{
+  "name": "nexus",
+  "private": false,
+  "version": "2.0.0",
+  "description": "Simulazione urbana multi-agente con economia, democrazia e interfaccia 2D/3D in tempo reale",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TUO-USER/nexus.git"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "stop": "node scripts/free-ports.mjs",
+    "predev": "node scripts/free-ports.mjs",
+    "dev": "concurrently -n sim,web -c cyan,magenta \"npm run dev -w @nexus/server\" \"npm run dev -w @nexus/web\"",
+    "build": "npm run build -w @nexus/simulation && npm run build -w @nexus/server && npm run build -w @nexus/web && npm run build -w @nexus/sdk",
+    "start": "npm run start -w @nexus/server",
+    "test": "npm run test -w @nexus/simulation"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.8.2"
+  }
+}
